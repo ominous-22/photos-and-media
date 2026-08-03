@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MATTHEW JAMES LAKAMP — PHOTOGRAPHY</title>
+<meta name="description" content="Photography and mixed media work by Matthew James Lakamp. Portland, Oregon." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@200;300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --dim: #888888;
+    --rule: #ffffff;
+    --mono: 'IBM Plex Mono', 'Courier Prime', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --serif: 'Courier Prime', 'IBM Plex Mono', ui-monospace, monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--mono);
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--fg); color: var(--bg); }
+
+  /* ─────────────────────────────────────────────
+     SACRED GEOMETRY — FLOWER OF LIFE BACKGROUND
+     ───────────────────────────────────────────── */
+  .geometry-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'><g fill='none' stroke='white' stroke-width='0.7'><circle cx='120' cy='120' r='40'/><circle cx='120' cy='80' r='40'/><circle cx='120' cy='160' r='40'/><circle cx='85.36' cy='100' r='40'/><circle cx='154.64' cy='100' r='40'/><circle cx='85.36' cy='140' r='40'/><circle cx='154.64' cy='140' r='40'/></g></svg>");
+    background-size: 360px 360px;
+  }
+
+  /* ─────────────────────────────────────────────
+     LAYOUT
+     ───────────────────────────────────────────── */
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* TOPBAR */
+  .topbar {
+    border-bottom: 1px solid var(--rule);
+    padding: 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .topbar .mark {
+    font-family: var(--mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .topbar .meta {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────────────────
+     HERO
+     ───────────────────────────────────────────── */
+  .hero {
+    padding: 120px 0 80px;
+    position: relative;
+    text-align: center;
+  }
+  .hero .glyph {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 48px;
+    opacity: 0.8;
+  }
+  .hero h1 {
+    font-family: var(--mono);
+    font-weight: 200;
+    font-size: clamp(40px, 7vw, 88px);
+    letter-spacing: 0.08em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .hero .stack {
+    font-family: var(--mono);
+    font-weight: 300;
+    font-size: clamp(28px, 5vw, 56px);
+    letter-spacing: 0.18em;
+    margin-bottom: 32px;
+  }
+  .hero .tag {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .hero .tag::before, .hero .tag::after {
+    content: '— ';
+    color: var(--fg);
+  }
+  .hero .tag::after { content: ' —'; }
+
+  /* ─────────────────────────────────────────────
+     STATEMENT
+     ───────────────────────────────────────────── */
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 48px;
+  }
+  .section-rule::before, .section-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+    opacity: 0.4;
+  }
+  .section-rule .label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .statement {
+    padding: 40px 0 80px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .statement-body {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--fg);
+  }
+  .statement-body p { margin-bottom: 20px; }
+  .statement-body p:last-child { margin-bottom: 0; }
+
+  /* ─────────────────────────────────────────────
+     GALLERY GRID
+     ───────────────────────────────────────────── */
+  .gallery {
+    padding: 40px 0 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  @media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .gallery { grid-template-columns: 1fr; } }
+
+  .tile {
+    position: relative;
+    background: var(--bg);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+  }
+  .tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease, opacity 0.4s ease;
+    opacity: 0.85;
+  }
+  .tile:hover img { transform: scale(1.04); opacity: 1; }
+
+  .tile-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    pointer-events: none;
+  }
+  .tile-num {
+    position: absolute;
+    top: 14px;
+    left: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--fg);
+    opacity: 0.7;
+  }
+  .tile-title {
+    font-family: var(--mono);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+  .tile-loc {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--dim);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  /* ─────────────────────────────────────────────
+     MIXED MEDIA SECTION
+     ───────────────────────────────────────────── */
+  .mixed-media {
+    padding: 80px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  @media (max-width: 800px) { .mixed-media { grid-template-columns: 1fr; } }
+
+  .mixed-media .text h3 {
+    font-family: var(--mono);
+    font-weight: 300;
+    font-size: 32px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .mixed-media .text p {
+    font-family: var(--serif);
+    font-size: 15px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+  .mixed-media .img-wrap {
+    border: 1px solid var(--rule);
+    padding: 12px;
+  }
+  .mixed-media .img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .mixed-media .caption {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-align: center;
+  }
+
+  /* ─────────────────────────────────────────────
+     CONTACT / FOOTER
+     ───────────────────────────────────────────── */
+  .contact {
+    padding: 80px 0;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+  }
+  .contact .glyph {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 32px;
+    opacity: 0.6;
+  }
+  .contact h2 {
+    font-family: var(--mono);
+    font-weight: 200;
+    font-size: 28px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .contact .info {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    line-height: 2;
+  }
+  .contact a {
+    color: var(--fg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--dim);
+    padding-bottom: 2px;
+    transition: border-color 0.2s ease;
+  }
+  .contact a:hover { border-bottom-color: var(--fg); }
+
+  .contact .download {
+    margin-top: 40px;
+    display: inline-block;
+    padding: 16px 32px;
+    border: 1px solid var(--fg);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--fg);
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  .contact .download:hover { background: var(--fg); color: var(--bg); border-bottom: 1px solid var(--fg); }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 32px 0;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  /* ─────────────────────────────────────────────
+     LIGHTBOX
+     ───────────────────────────────────────────── */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.97);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+
+  .lightbox-inner {
+    max-width: 90vw;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+  }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+    border: 1px solid var(--rule);
+  }
+  .lightbox-caption {
+    margin-top: 20px;
+    text-align: center;
+    font-family: var(--mono);
+    color: var(--fg);
+  }
+  .lightbox-title {
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .lightbox-loc {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--dim);
+    text-transform: uppercase;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--fg);
+    background: none;
+    border: 1px solid var(--fg);
+    padding: 8px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 1px solid var(--fg);
+    color: var(--fg);
+    width: 48px;
+    height: 48px;
+    font-family: var(--mono);
+    font-size: 18px;
+    cursor: pointer;
+  }
+  .lightbox-prev { left: 32px; }
+  .lightbox-next { right: 32px; }
+
+  @media (max-width: 600px) {
+    .lightbox-prev { left: 12px; }
+    .lightbox-next { right: 12px; }
+    .lightbox-close { top: 12px; right: 12px; padding: 6px 10px; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="geometry-bg" aria-hidden="true"></div>
+
+<div class="container">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="mark">M · J · L</div>
+    <div class="meta">PORTLAND, OREGON · 2026</div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- METATRON'S CUBE -->
+    <svg class="glyph" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="white" stroke-width="0.6">
+        <!-- 13 circles -->
+        <circle cx="50" cy="50" r="6"/>
+        <circle cx="50" cy="22" r="6"/>
+        <circle cx="50" cy="78" r="6"/>
+        <circle cx="74.25" cy="36" r="6"/>
+        <circle cx="74.25" cy="64" r="6"/>
+        <circle cx="25.75" cy="36" r="6"/>
+        <circle cx="25.75" cy="64" r="6"/>
+        <circle cx="50" cy="50" r="28" stroke-opacity="0.4"/>
+        <!-- connecting lines -->
+        <line x1="50" y1="22" x2="74.25" y2="36"/>
+        <line x1="74.25" y1="36" x2="74.25" y2="64"/>
+        <line x1="74.25" y1="64" x2="50" y2="78"/>
+        <line x1="50" y1="78" x2="25.75" y2="64"/>
+        <line x1="25.75" y1="64" x2="25.75" y2="36"/>
+        <line x1="25.75" y1="36" x2="50" y2="22"/>
+        <line x1="50" y1="22" x2="50" y2="78"/>
+        <line x1="74.25" y1="36" x2="25.75" y2="64"/>
+        <line x1="25.75" y1="36" x2="74.25" y2="64"/>
+      </g>
+    </svg>
+    <h1>MATTHEW JAMES</h1>
+    <div class="stack">LAKAMP</div>
+    <div class="tag">PHOTOGRAPHY · MIXED MEDIA</div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement">
+    <div class="section-rule"><span class="label">Artist Statement</span></div>
+    <div class="statement-body">
+      <p>This collection explores the intersection of urban decay and human presence, capturing the raw beauty found in Portland's industrial landscapes and forgotten spaces.</p>
+      <p>Through high-contrast black and white imagery interspersed with moments of color, each photograph reveals the textures, patterns, and quiet poetry of the everyday urban experience.</p>
+      <p>The work emphasizes atmosphere and mood, inviting viewers to see familiar city scenes through a lens of contemplation and artistic transformation.</p>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <div class="section-rule"><span class="label">Plates I — XXII</span></div>
+  <section class="gallery" id="gallery"></section>
+
+  <!-- MIXED MEDIA -->
+  <div class="section-rule"><span class="label">Mixed Media</span></div>
+  <section class="mixed-media">
+    <div class="text">
+      <h3>Beyond the Lens</h3>
+      <p>Beyond photography, my practice extends into mixed media and abstract art. These works explore the same themes — decay, transformation, layered histories — but through gestural mark-making, color theory, and digital manipulation.</p>
+      <p>Each piece builds through multiple passes: painting, drawing, collage, and digital layering, creating dense visual compositions that reward extended contemplation.</p>
+    </div>
+    <div>
+      <div class="img-wrap">
+        <img src="images/23-layered-composition.jpg" alt="Layered Composition" />
+      </div>
+      <div class="caption">Layered Composition · Mixed Media on Digital Canvas · 2024</div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <!-- SEED OF LIFE -->
+    <svg class="glyph" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="white" stroke-width="0.7">
+        <circle cx="50" cy="50" r="14"/>
+        <circle cx="50" cy="36" r="14"/>
+        <circle cx="50" cy="64" r="14"/>
+        <circle cx="62.12" cy="43" r="14"/>
+        <circle cx="62.12" cy="57" r="14"/>
+        <circle cx="37.88" cy="43" r="14"/>
+        <circle cx="37.88" cy="57" r="14"/>
+      </g>
+    </svg>
+    <h2>Get in Touch</h2>
+    <div class="info">
+      MATTHEW JAMES LAKAMP<br/>
+      PORTLAND, OREGON<br/>
+      <a href="tel:5033177821">503 · 317 · 7821</a><br/>
+      <a href="mailto:mjlakamp@gmail.com">mjlakamp@gmail.com</a>
+    </div>
+    <a class="download" href="Matthew_James_Complete_Portfolio.pdf" download>Download Full Portfolio · PDF</a>
+  </section>
+
+  <footer>
+    © 2026 MATTHEW JAMES LAKAMP · ALL RIGHTS RESERVED
+  </footer>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close">CLOSE ✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="Previous">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next" aria-label="Next">›</button>
+  <div class="lightbox-inner">
+    <img id="lightbox-img" src="" alt="" />
+    <div class="lightbox-caption">
+      <div class="lightbox-title" id="lightbox-title"></div>
+      <div class="lightbox-loc" id="lightbox-loc"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const works = [
+    { file: '01-bridge-at-dusk.jpg',     title: 'Bridge at Dusk',     loc: 'Steel Bridge, Portland' },
+    { file: '02-urban-moment.jpg',        title: 'Urban Moment',        loc: 'Downtown Portland' },
+    { file: '03-striped.jpg',             title: 'Striped',             loc: 'Urban Portrait' },
+    { file: '04-introspection.jpg',       title: 'Introspection',       loc: 'Close Study' },
+    { file: '05-framed-decay.jpg',        title: 'Framed Decay',        loc: 'Industrial Remnants' },
+    { file: '06-refreshment.jpg',         title: 'Refreshment',         loc: 'Still Life' },
+    { file: '07-coastal-highway.jpg',     title: 'Coastal Highway',     loc: 'Oregon Coast' },
+    { file: '08-industrial-remains.jpg',  title: 'Industrial Remains',  loc: 'Abandoned Factory' },
+    { file: '09-bridge-crossing.jpg',     title: 'Bridge Crossing',     loc: 'Hawthorne Bridge, Portland' },
+    { file: '10-industrial-blues.jpg',    title: 'Industrial Blues',    loc: 'Pearl District, Portland' },
+    { file: '11-textures.jpg',            title: 'Textures',            loc: 'Urban Detail' },
+    { file: '12-rolling-stock.jpg',       title: 'Rolling Stock',       loc: 'Rail Yard' },
+    { file: '13-ghosted.jpg',             title: 'Ghosted',             loc: 'Abandoned Building' },
+    { file: '14-winter-rails.jpg',        title: 'Winter Rails',        loc: 'Aerial View' },
+    { file: '15-winter-portrait.jpg',     title: 'Winter Portrait',     loc: 'Self Portrait' },
+    { file: '16-street-life.jpg',         title: 'Street Life',         loc: 'Downtown Portland' },
+    { file: '17-ethereal.jpg',            title: 'Ethereal',            loc: 'Riverside' },
+    { file: '18-one-way.jpg',             title: 'One Way',             loc: 'Urban Signage' },
+    { file: '19-fallen.jpg',              title: 'Fallen',              loc: 'Nature Study' },
+    { file: '20-riverfront-glow.jpg',     title: 'Riverfront Glow',     loc: 'Willamette River' },
+    { file: '21-classical-decay.jpg',     title: 'Classical Decay',     loc: 'Historic Building' },
+    { file: '22-cyclist.jpg',             title: 'Cyclist',             loc: 'Industrial District' }
+  ];
+
+  const roman = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX','XXI','XXII'];
+
+  const gallery = document.getElementById('gallery');
+  works.forEach((w, i) => {
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    tile.dataset.index = i;
+    tile.innerHTML = `
+      <span class="tile-num">${roman[i]}</span>
+      <img src="images/${w.file}" alt="${w.title}" loading="lazy" />
+      <div class="tile-overlay">
+        <div class="tile-title">${w.title}</div>
+        <div class="tile-loc">${w.loc}</div>
+      </div>
+    `;
+    tile.addEventListener('click', () => openLightbox(i));
+    gallery.appendChild(tile);
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbTitle = document.getElementById('lightbox-title');
+  const lbLoc = document.getElementById('lightbox-loc');
+  let currentIndex = 0;
+
+  function openLightbox(i) {
+    currentIndex = i;
+    updateLightbox();
+    lightbox.classList.add('active');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  function updateLightbox() {
+    const w = works[currentIndex];
+    lbImg.src = `images/${w.file}`;
+    lbImg.alt = w.title;
+    lbTitle.textContent = w.title;
+    lbLoc.textContent = w.loc;
+  }
+  function next() { currentIndex = (currentIndex + 1) % works.length; updateLightbox(); }
+  function prev() { currentIndex = (currentIndex - 1 + works.length) % works.length; updateLightbox(); }
+
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-next').addEventListener('click', e => { e.stopPropagation(); next(); });
+  document.getElementById('lightbox-prev').addEventListener('click', e => { e.stopPropagation(); prev(); });
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') next();
+    if (e.key === 'ArrowLeft') prev();
+  });
+</script>
+
+</body>
+</html>
